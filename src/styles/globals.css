@@ -1,0 +1,62 @@
+html,
+body {
+  max-width: 100vw;
+  background-color: rgb(57, 199, 224);
+  overflow-x:hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.mainPage {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  z-index: inherit;
+
+}
+
+.pokemonChoice {
+  background-color: rgb(57, 199, 224);
+  z-index: 3;
+}
+
+.pokemonGIF {
+  border-left:solid white;
+  z-index: 2;
+
+}
+
+.GIFBackground {
+  position: relative;
+  right: 1000px;
+  bottom: 1000px;
+  height: 100%;
+  width: 700%;
+  animation: loop infinite 1s linear;
+}
+
+.filler {
+  background-color:rgb(57, 199, 224);
+  border:solid rgb(31, 143, 196);
+  padding-right:80%;
+  border-radius:30px;
+  display: flex;
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+@keyframes loop {
+0% {
+  transform: translate(0%,0%);
+}
+100% {
+  transform: translate(5%,4%);
+}
+}
+.displayGIF {
+  position: fixed;
+  z-index:10;
+  top: 25%;
+  left: 65%;
+}
