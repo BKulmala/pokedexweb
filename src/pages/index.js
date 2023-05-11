@@ -28,42 +28,49 @@ function Home({ Kanto, Johto, Hoenn, Sinnoh, Unova, Kalos, Alola }) {
       {Kanto.map((country) => (
         <li class="filler" onClick={() => changeGIF(country.Pokemon)} key={country.id}>
           <Image width='70'height='70'src={'https://img.pokemondb.net/sprites/x-y/normal/' + country.Pokemon + '.png'} alt='Bulbasaur'/>
+          <br /><br />
           {country.Pokemon}
           </li>
       ))}
       {Johto.map((country) => (
         <li class="filler" onClick={() => changeGIF(country.Pokemon)} key={country.id}>
           <Image width='70'height='70'src={'https://img.pokemondb.net/sprites/x-y/normal/' + country.Pokemon + '.png'} alt='Bulbasaur'/>
+          <br /><br />
           {country.Pokemon}
           </li>
       ))}
       {Hoenn.map((country) => (
         <li class="filler" onClick={() => changeGIF(country.Pokemon)} key={country.id}>
           <Image width='70'height='70'src={'https://img.pokemondb.net/sprites/x-y/normal/' + country.Pokemon + '.png'} alt='Bulbasaur'/>
+          <br /><br />
           {country.Pokemon}
           </li>
       ))}
       {Sinnoh.map((country) => (
         <li class="filler" onClick={() => changeGIF(country.Pokemon)} key={country.id}>
           <Image width='70'height='70'src={'https://img.pokemondb.net/sprites/x-y/normal/' + country.Pokemon + '.png'} alt='Bulbasaur'/>
+          <br /><br />
           {country.Pokemon}
           </li>
       ))}
       {Unova.map((country) => (
         <li class="filler" onClick={() => changeGIF(country.Pokemon)} key={country.id}>
           <Image width='70'height='70'src={'https://img.pokemondb.net/sprites/x-y/normal/' + country.Pokemon + '.png'} alt='Bulbasaur'/>
+          <br /><br />
           {country.Pokemon}
           </li>
       ))}
       {Kalos.map((country) => (
         <li class="filler" onClick={() => changeGIF(country.Pokemon)} key={country.id}>
           <Image width='70'height='70'src={'https://img.pokemondb.net/sprites/x-y/normal/' + country.Pokemon + '.png'} alt='Bulbasaur'/>
+          <br /><br />
           {country.Pokemon}
           </li>
       ))}
       {Alola.map((country) => (
         <li class="filler" onClick={() => changeGIF(country.Pokemon)} key={country.id}>
           <Image width='70'height='70'src={'https://img.pokemondb.net/sprites/x-y/normal/' + country.Pokemon + '.png'} alt='Bulbasaur'/>
+          <br /><br />
           {country.Pokemon}
           </li>
       ))}

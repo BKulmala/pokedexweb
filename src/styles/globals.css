@@ -1,5 +1,6 @@
 html,
 body {
+  margin: 0;
   max-width: 100vw;
   background-color: rgb(57, 199, 224);
   overflow-x:hidden;
@@ -18,32 +19,34 @@ a {
 }
 
 .pokemonChoice {
+  position:relative;
   background-color: rgb(57, 199, 224);
   z-index: 3;
+  width:400px;
+  top:-20px;
 }
 
 .pokemonGIF {
-  border-left:solid white;
   z-index: 2;
-
 }
 
 .GIFBackground {
-  position: relative;
-  right: 1000px;
-  bottom: 1000px;
-  height: 1000%;
-  width: 1000%;
+  position: fixed;
+  right: 0px;
+  bottom: 0px;
+  height: 170%;
+  width: 100%;
   animation: loop infinite 1s linear;
 }
 
 .filler {
   background-color:rgb(57, 199, 224);
   border:solid rgb(31, 143, 196);
-  padding-right:80%;
   border-radius:30px;
+  width: 400px;
   display: flex;
-  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-size:20px;
+  font-family: "Lucida Console", "Courier New", monospace;
 }
 
 @keyframes loop {
@@ -58,5 +61,5 @@ a {
   position: fixed;
   z-index:10;
   top: 25%;
-  left: 65%;
+  left: 45%;
 }
