@@ -12,7 +12,7 @@ function changeGIF(pokemon) {
   img.src = "https://projectpokemon.org/images/normal-sprite/" + pokemon + ".gif";
 }
 
-function Home({ Kanto }) {
+function Home({ Kanto, Johto, Hoenn, Sinnoh, Unova, Kalos, Alola }) {
   return (
     <>
       <Head>
@@ -22,12 +22,49 @@ function Home({ Kanto }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main class="mainPage">
+        {console.log(Johto)}
         <div class="pokemonChoice">
         <ul>
       {Kanto.map((country) => (
-        <li class="filler" onClick={() => changeGIF(country.Name)} key={country.id}>
-          <Image width='70'height='70'src={'https://img.pokemondb.net/sprites/x-y/normal/' + country.Name + '.png'} alt='Bulbasaur'/>
-          {country.Name}
+        <li class="filler" onClick={() => changeGIF(country.Pokemon)} key={country.id}>
+          <Image width='70'height='70'src={'https://img.pokemondb.net/sprites/x-y/normal/' + country.Pokemon + '.png'} alt='Bulbasaur'/>
+          {country.Pokemon}
+          </li>
+      ))}
+      {Johto.map((country) => (
+        <li class="filler" onClick={() => changeGIF(country.Pokemon)} key={country.id}>
+          <Image width='70'height='70'src={'https://img.pokemondb.net/sprites/x-y/normal/' + country.Pokemon + '.png'} alt='Bulbasaur'/>
+          {country.Pokemon}
+          </li>
+      ))}
+      {Hoenn.map((country) => (
+        <li class="filler" onClick={() => changeGIF(country.Pokemon)} key={country.id}>
+          <Image width='70'height='70'src={'https://img.pokemondb.net/sprites/x-y/normal/' + country.Pokemon + '.png'} alt='Bulbasaur'/>
+          {country.Pokemon}
+          </li>
+      ))}
+      {Sinnoh.map((country) => (
+        <li class="filler" onClick={() => changeGIF(country.Pokemon)} key={country.id}>
+          <Image width='70'height='70'src={'https://img.pokemondb.net/sprites/x-y/normal/' + country.Pokemon + '.png'} alt='Bulbasaur'/>
+          {country.Pokemon}
+          </li>
+      ))}
+      {Unova.map((country) => (
+        <li class="filler" onClick={() => changeGIF(country.Pokemon)} key={country.id}>
+          <Image width='70'height='70'src={'https://img.pokemondb.net/sprites/x-y/normal/' + country.Pokemon + '.png'} alt='Bulbasaur'/>
+          {country.Pokemon}
+          </li>
+      ))}
+      {Kalos.map((country) => (
+        <li class="filler" onClick={() => changeGIF(country.Pokemon)} key={country.id}>
+          <Image width='70'height='70'src={'https://img.pokemondb.net/sprites/x-y/normal/' + country.Pokemon + '.png'} alt='Bulbasaur'/>
+          {country.Pokemon}
+          </li>
+      ))}
+      {Alola.map((country) => (
+        <li class="filler" onClick={() => changeGIF(country.Pokemon)} key={country.id}>
+          <Image width='70'height='70'src={'https://img.pokemondb.net/sprites/x-y/normal/' + country.Pokemon + '.png'} alt='Bulbasaur'/>
+          {country.Pokemon}
           </li>
       ))}
     </ul>
@@ -42,11 +79,36 @@ function Home({ Kanto }) {
 }
 
 export async function getServerSideProps() {
-  let { data } = await supabase.from('Kanto').select()
-
+  var dataKanto;
+  {let { data } = await supabase.from('Kanto').select()
+  dataKanto = data;}
+  var dataJohto;
+  {let { data } = await supabase.from('Johto').select()
+  dataJohto = data;}
+  var dataHoenn;
+  {let { data } = await supabase.from('Hoenn').select()
+  dataHoenn = data;}
+  var dataSinnoh;
+  {let { data } = await supabase.from('Sinnoh').select()
+  dataSinnoh = data;}
+  var dataUnova;
+  {let { data } = await supabase.from('Unova').select()
+  dataUnova = data;}
+  var dataKalos;
+  {let { data } = await supabase.from('Kalos').select()
+  dataKalos = data;}
+  var dataAlola;
+  {let { data } = await supabase.from('Alola').select()
+  dataAlola = data;}
   return {
     props: {
-     Kanto: data
+     Johto: dataJohto,
+     Kanto: dataKanto,
+     Hoenn: dataHoenn,
+     Sinnoh: dataSinnoh,
+     Unova: dataUnova,
+     Kalos: dataKalos,
+     Alola: dataAlola
     },
   }
 }

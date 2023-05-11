@@ -32,8 +32,8 @@ a {
   position: relative;
   right: 1000px;
   bottom: 1000px;
-  height: 100%;
-  width: 700%;
+  height: 1000%;
+  width: 1000%;
   animation: loop infinite 1s linear;
 }
 
