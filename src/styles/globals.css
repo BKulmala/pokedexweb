@@ -1,3 +1,24 @@
+:root {
+  --grass: green;
+  --bug: lime;
+  --dark: black;
+  --dragon: lavender;
+  --electric: yellow;
+  --fairy: pink;
+  --fighting: brown;
+  --fire: red;
+  --flying: aqua;
+  --ghost: purple;
+  --ground: beige;
+  --ice: teal;
+  --water: blue;
+  --normal: gray;
+  --poison:blueviolet;
+  --psychic:fuchsia;
+  --rock:chocolate;
+  --steel:silver;
+}
+
 html,
 body {
   margin: 0;
@@ -20,10 +41,10 @@ a {
 
 .pokemonChoice {
   position:relative;
-  background-color: rgb(57, 199, 224);
   z-index: 3;
   width:400px;
   top:-20px;
+  left:-40px;
 }
 
 .pokemonGIF {
