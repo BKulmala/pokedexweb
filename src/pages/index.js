@@ -7,7 +7,8 @@ import Image from 'next/image'
 import { Girassol, Inter } from 'next/font/google'
 import pokemonBackground from './../../public/grid.png'
 import React, {useState, useEffect } from 'react'
-import { supabase } from '../../api'
+import TextField from "@mui/material/TextField"
+import Button from "@mui/material/Button"
 const inter = Inter({ subsets: ['latin'] })
 const firebaseConfig = {
   apiKey: "AIzaSyBujr-HqmiLG6de1x2epreoSasMhyIiOjA",
@@ -30,7 +31,8 @@ function Home({ Kanto, Johto, Hoenn, Sinnoh, Unova, Kalos, Alola, Galar }) {
   const app = initializeApp(firebaseConfig);
   if (app.name && typeof window !== 'undefined') {
     const analytics = getAnalytics(app);
-  }
+  }  
+  const [value, setValue] = React.useState();
   return (
     <>
       <Head>
@@ -40,15 +42,30 @@ function Home({ Kanto, Johto, Hoenn, Sinnoh, Unova, Kalos, Alola, Galar }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main class="mainPage">
-        <div class="pokemonChoice">        
-        <ul>            
+        <div class="pokemonChoice">
+        <TextField
+          id="outlined-basic"
+          variant="filled"
+          fullWidth
+          label="Search"
+          onChange={(e) => setValue(e.target.value)}
+          sx={{ 
+            ml:6,
+            mt:4
+          }}
+        />
+        <ul>         
         {Kanto.map((country) => (
-        <li style={{background:"var(--"+country[1].type+")", }} class="filler" onClick={() => changeGIF(country[1].name)} key={country.id}>
-          <Image width='70'height='70'src={'https://img.pokemondb.net/sprites/x-y/normal/' + country[1].name + '.png'} alt='Bulbasaur'/>
-          <br /><br />
-          {country[1].name}
-          </li>
-      ))}
+
+        
+          (<li style={{background:"var(--"+country[1].type+")", }} class="filler" onClick={() => changeGIF(country[1].name)} key={country.id}>
+          {country[1].name.includes(value) && 
+          (<Image width='70'height='70'src={'https://img.pokemondb.net/sprites/x-y/normal/' + country[1].name + '.png'} alt='Bulbasaur'/>) &&
+          (<br />) &&
+          (<br />)}
+          {/*country[1].name*/}
+          </li>)
+          ))}
       {Johto.map((country) => (
         <li style={{background:"var(--"+country[1].type+")", }} class="filler" onClick={() => changeGIF(country[1].name)} key={country.id}>
           <Image width='70'height='70'src={'https://img.pokemondb.net/sprites/x-y/normal/' + country[1].name + '.png'} alt='Bulbasaur'/>
@@ -98,7 +115,7 @@ function Home({ Kanto, Johto, Hoenn, Sinnoh, Unova, Kalos, Alola, Galar }) {
           {country[1].name}
           </li>
       ))}
-    </ul>
+        </ul>
         </div>
         <div class="pokemonGIF">
           <Image class="GIFBackground" src={pokemonBackground}/>
@@ -118,9 +135,7 @@ export async function getServerSideProps() {
       if (snapshot.exists()) {
         snapshot = snapshot.toJSON();
         for(var i in snapshot) {
-          if(JSON.stringify(snapshot[i].name).slice(1, JSON.stringify(snapshot[i].name).length - 1).substring(0,pokeExample.length) == pokeExample) {
             dataKanto.push([i, snapshot[i]]);
-          }
         }
       } else {
         console.log("No data available");
@@ -135,9 +150,7 @@ export async function getServerSideProps() {
         if (snapshot.exists()) {
             snapshot = snapshot.toJSON();
             for(var i in snapshot) {
-              if(JSON.stringify(snapshot[i].name).slice(1, JSON.stringify(snapshot[i].name).length - 1).substring(0,pokeExample.length) == pokeExample) {
                 dataJohto.push([i, snapshot[i]]);
-              }
             }
       } else {
         console.log("No data available");
@@ -151,9 +164,7 @@ export async function getServerSideProps() {
         if (snapshot.exists()) {
             snapshot = snapshot.toJSON();
             for(var i in snapshot) {
-              if(JSON.stringify(snapshot[i].name).slice(1, JSON.stringify(snapshot[i].name).length - 1).substring(0,pokeExample.length) == pokeExample) {
-                dataHoenn.push([i, snapshot[i]]);
-              }
+              dataHoenn.push([i, snapshot[i]]);
             }
       } else {
         console.log("No data available");
@@ -167,9 +178,7 @@ export async function getServerSideProps() {
         if (snapshot.exists()) {
             snapshot = snapshot.toJSON();
             for(var i in snapshot) {
-              if(JSON.stringify(snapshot[i].name).slice(1, JSON.stringify(snapshot[i].name).length - 1).substring(0,pokeExample.length) == pokeExample) {
                 dataSinnoh.push([i, snapshot[i]]);
-              }
             }
       } else {
         console.log("No data available");
@@ -183,9 +192,7 @@ export async function getServerSideProps() {
         if (snapshot.exists()) {
             snapshot = snapshot.toJSON();
             for(var i in snapshot) {
-              if(JSON.stringify(snapshot[i].name).slice(1, JSON.stringify(snapshot[i].name).length - 1).substring(0,pokeExample.length) == pokeExample) {
                 dataUnova.push([i, snapshot[i]]);
-              }
             }
       } else {
         console.log("No data available");
@@ -199,9 +206,7 @@ export async function getServerSideProps() {
         if (snapshot.exists()) {
             snapshot = snapshot.toJSON();
             for(var i in snapshot) {
-              if(JSON.stringify(snapshot[i].name).slice(1, JSON.stringify(snapshot[i].name).length - 1).substring(0,pokeExample.length) == pokeExample) {
                 dataKalos.push([i, snapshot[i]]);
-              }
             }
       } else {
         console.log("No data available");
@@ -215,9 +220,7 @@ export async function getServerSideProps() {
         if (snapshot.exists()) {
             snapshot = snapshot.toJSON();
             for(var i in snapshot) {
-              if(JSON.stringify(snapshot[i].name).slice(1, JSON.stringify(snapshot[i].name).length - 1).substring(0,pokeExample.length) == pokeExample) {
                 dataAlola.push([i, snapshot[i]]);
-              }
             }
       } else {
         console.log("No data available");
@@ -231,9 +234,7 @@ export async function getServerSideProps() {
         if (snapshot.exists()) {
             snapshot = snapshot.toJSON();
             for(var i in snapshot) {
-              if(JSON.stringify(snapshot[i].name).slice(1, JSON.stringify(snapshot[i].name).length - 1).substring(0,pokeExample.length) == pokeExample) {
                 dataGalar.push([i, snapshot[i]]);
-              }
             }
       } else {
         console.log("No data available");
