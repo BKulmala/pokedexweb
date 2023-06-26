@@ -55,66 +55,62 @@ function Home({ Kanto, Johto, Hoenn, Sinnoh, Unova, Kalos, Alola, Galar }) {
           }}
         />
         <ul>         
-        {Kanto.map((country) => (
-
-        
-          (<li style={{background:"var(--"+country[1].type+")", }} class="filler" onClick={() => changeGIF(country[1].name)} key={country.id}>
-          {country[1].name.includes(value) && 
-          (<Image width='70'height='70'src={'https://img.pokemondb.net/sprites/x-y/normal/' + country[1].name + '.png'} alt='Bulbasaur'/>) &&
-          (<br />) &&
-          (<br />)}
-          {/*country[1].name*/}
-          </li>)
-          ))}
-      {Johto.map((country) => (
+        {Kanto.filter(pokemon => {if(value == null) {return} else{return pokemon[1].name.includes(value)}}).map((country) => (
         <li style={{background:"var(--"+country[1].type+")", }} class="filler" onClick={() => changeGIF(country[1].name)} key={country.id}>
-          <Image width='70'height='70'src={'https://img.pokemondb.net/sprites/x-y/normal/' + country[1].name + '.png'} alt='Bulbasaur'/>
-          <br /><br />
-          {country[1].name}
-          </li>
-      ))}
-      {Hoenn.map((country) => (
+        <Image width='70'height='70'src={'https://img.pokemondb.net/sprites/x-y/normal/' + country[1].name + '.png'} alt='Bulbasaur'/>
+        <br /><br />
+        {country[1].name}
+        </li>
+        ))}
+        {Johto.filter(pokemon => {if(value == null) {return} else{return pokemon[1].name.includes(value)}}).map((country) => (
         <li style={{background:"var(--"+country[1].type+")", }} class="filler" onClick={() => changeGIF(country[1].name)} key={country.id}>
-          <Image width='70'height='70'src={'https://img.pokemondb.net/sprites/x-y/normal/' + country[1].name + '.png'} alt='Bulbasaur'/>
-          <br /><br />
-          {country[1].name}
-          </li>
-      ))}
-      {Sinnoh.map((country) => (
+        <Image width='70'height='70'src={'https://img.pokemondb.net/sprites/x-y/normal/' + country[1].name + '.png'} alt='Bulbasaur'/>
+        <br /><br />
+        {country[1].name}
+        </li>
+        ))}
+        {Hoenn.filter(pokemon => {if(value == null) {return} else{return pokemon[1].name.includes(value)}}).map((country) => (
         <li style={{background:"var(--"+country[1].type+")", }} class="filler" onClick={() => changeGIF(country[1].name)} key={country.id}>
-          <Image width='70'height='70'src={'https://img.pokemondb.net/sprites/x-y/normal/' + country[1].name + '.png'} alt='Bulbasaur'/>
-          <br /><br />
-          {country[1].name}
-          </li>
-      ))}
-      {Unova.map((country) => (
+        <Image width='70'height='70'src={'https://img.pokemondb.net/sprites/x-y/normal/' + country[1].name + '.png'} alt='Bulbasaur'/>
+        <br /><br />
+        {country[1].name}
+        </li>
+        ))}
+        {Sinnoh.filter(pokemon => {if(value == null) {return} else{return pokemon[1].name.includes(value)}}).map((country) => (
         <li style={{background:"var(--"+country[1].type+")", }} class="filler" onClick={() => changeGIF(country[1].name)} key={country.id}>
-          <Image width='70'height='70'src={'https://img.pokemondb.net/sprites/x-y/normal/' + country[1].name + '.png'} alt='Bulbasaur'/>
-          <br /><br />
-          {country[1].name}
-          </li>
-      ))}
-      {Kalos.map((country) => (
+        <Image width='70'height='70'src={'https://img.pokemondb.net/sprites/x-y/normal/' + country[1].name + '.png'} alt='Bulbasaur'/>
+        <br /><br />
+        {country[1].name}
+        </li>
+        ))}
+        {Unova.filter(pokemon => {if(value == null) {return} else{return pokemon[1].name.includes(value)}}).map((country) => (
         <li style={{background:"var(--"+country[1].type+")", }} class="filler" onClick={() => changeGIF(country[1].name)} key={country.id}>
-          <Image width='70'height='70'src={'https://img.pokemondb.net/sprites/x-y/normal/' + country[1].name + '.png'} alt='Bulbasaur'/>
-          <br /><br />
-          {country[1].name}
-          </li>
-      ))}
-      {Alola.map((country) => (
+        <Image width='70'height='70'src={'https://img.pokemondb.net/sprites/x-y/normal/' + country[1].name + '.png'} alt='Bulbasaur'/>
+        <br /><br />
+        {country[1].name}
+        </li>
+        ))}
+        {Kalos.filter(pokemon => {if(value == null) {return} else{return pokemon[1].name.includes(value)}}).map((country) => (
         <li style={{background:"var(--"+country[1].type+")", }} class="filler" onClick={() => changeGIF(country[1].name)} key={country.id}>
-          <Image width='70'height='70'src={'https://img.pokemondb.net/sprites/sun-moon/normal/' + country[1].name + '.png'} alt='Bulbasaur'/>
-          <br /><br />
-          {country[1].name}
-          </li>
-      ))}
-      {Galar.map((country) => (
+        <Image width='70'height='70'src={'https://img.pokemondb.net/sprites/x-y/normal/' + country[1].name + '.png'} alt='Bulbasaur'/>
+        <br /><br />
+        {country[1].name}
+        </li>
+        ))}
+        {Alola.filter(pokemon => {if(value == null) {return} else{return pokemon[1].name.includes(value)}}).map((country) => (
         <li style={{background:"var(--"+country[1].type+")", }} class="filler" onClick={() => changeGIF(country[1].name)} key={country.id}>
-          <Image width='70'height='70'src={'https://img.pokemondb.net/sprites/sword-shield/normal/' + country[1].name + '.png'} alt='Bulbasaur'/>
-          <br /><br />
-          {country[1].name}
-          </li>
-      ))}
+        <Image width='70'height='70'src={'https://img.pokemondb.net/sprites/x-y/normal/' + country[1].name + '.png'} alt='Bulbasaur'/>
+        <br /><br />
+        {country[1].name}
+        </li>
+        ))}
+        {Galar.filter(pokemon => {if(value == null) {return} else{return pokemon[1].name.includes(value)}}).map((country) => (
+        <li style={{background:"var(--"+country[1].type+")", }} class="filler" onClick={() => changeGIF(country[1].name)} key={country.id}>
+        <Image width='70'height='70'src={'https://img.pokemondb.net/sprites/x-y/normal/' + country[1].name + '.png'} alt='Bulbasaur'/>
+        <br /><br />
+        {country[1].name}
+        </li>
+        ))}
         </ul>
         </div>
         <div class="pokemonGIF">
