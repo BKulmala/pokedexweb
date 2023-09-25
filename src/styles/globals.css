@@ -50,7 +50,9 @@ a {
 .pokemonGIF {
   z-index: 2;
 }
-
+.pokemonChoice Switch {
+  position:absolute;
+}
 .GIFBackground {
   position: fixed;
   right: 0px;

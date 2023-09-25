@@ -7,7 +7,9 @@ import { Inter } from 'next/font/google'
 import pokemonBackground from './../../public/grid.png'
 import React, { useState, useEffect } from 'react';
 import TextField from "@mui/material/TextField"
-import { Checkbox } from '@mui/material'
+import Switch from "@mui/material/Switch"
+import FormGroup from "@mui/material/FormGroup"
+import { Checkbox, FormControlLabel } from '@mui/material'
 import { addDoc, collection, getFirestore, getDocs, doc, query, where } from "firebase/firestore"
 import { getAuth } from "firebase/auth";
 import { useAuthState } from 'react-firebase-hooks/auth';
@@ -27,9 +29,10 @@ function changeGIF(pokemon) {
   var img = document.getElementById("test");
   img.src = "https://projectpokemon.org/images/normal-sprite/" + pokemon + ".gif";
 }
-
 function Home({ Kanto, Johto, Hoenn, Sinnoh, Unova, Kalos, Alola, Galar }) {
-  var pokeCaught = [];
+  var kantoCaught = [];
+  var caught = false;
+  const label = { inputProps: { 'aria-label': 'Switch demo' } };
   const [array, setArray] = useState([]);
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
@@ -63,23 +66,31 @@ function Home({ Kanto, Johto, Hoenn, Sinnoh, Unova, Kalos, Alola, Galar }) {
           }}
         />
         <ul>
-          {
-          useEffect(() => {
-            const fetchData = async () => {
-              var kantoCaught = [];
-              const app = initializeApp(firebaseConfig);
-              const db = getFirestore(app);
-              const docRef = collection(db, "kanto");
-              const q = query(docRef, where("name", "!=", "shdfu7fdgsuh")); //we just want every pokemon. there will never be a pokemon named "shdfu7..."
-              const querySnapshot = await getDocs(q);
-              querySnapshot.forEach((doc) => {
-                kantoCaught.push([doc.data()]);
-                // doc.data() is never undefined for query doc snapshots
-              });
-              setArray(kantoCaught);
-            }
-            fetchData();
-          }, [])}
+<FormGroup>
+        <FormControlLabel labelPlacement="end" 
+                    control={<Checkbox sx={{left:45}}{...label}
+                    onClick={e => {           
+                      let copy = array;
+                      console.log(copy);
+                      if(e.target.checked == true) {
+                        const fetchData = async () => {
+                          const app = initializeApp(firebaseConfig);
+                          const db = getFirestore(app);
+                          const docRef = collection(db, "kanto");
+                          const q = query(docRef, where("name", "!=", "shdfu7fdgsuh")); //we just want every pokemon. there will never be a pokemon named "shdfu7..."
+                          const querySnapshot = await getDocs(q);
+                          querySnapshot.forEach((doc) => {
+                            kantoCaught.push([doc.data()]);
+                          });
+                          setArray(kantoCaught);
+                        }
+                        fetchData();
+                      }
+                      if(e.target.checked == false) {
+                        setArray([]);
+                    }}}/>}
+                    label={<span style={{ position: 'relative', right:'-40px' }}>Toggle caught pokemon</span>} />
+        </FormGroup>
         {array.map((country) => (
         <li style={{background:"var(--"+country[0].type+")", }} class="filler" onClick={() => changeGIF(country[0].name)} key={country.id}>
         <Image width='70'height='70'src={'https://img.pokemondb.net/sprites/x-y/normal/' + country[0].name + '.png'} alt='Bulbasaur'/>
@@ -109,49 +120,140 @@ function Home({ Kanto, Johto, Hoenn, Sinnoh, Unova, Kalos, Alola, Galar }) {
         {Johto.filter(pokemon => {if(value == null) {return} else{return pokemon[1].name.includes(value)}}).map((country) => (
         <li style={{background:"var(--"+country[1].type+")", }} class="filler" onClick={() => changeGIF(country[1].name)} key={country.id}>
         <Image width='70'height='70'src={'https://img.pokemondb.net/sprites/x-y/normal/' + country[1].name + '.png'} alt='Bulbasaur'/>
-        <br /><br />
+        <Checkbox {...Johto} color="default" onChange={e => {
+          if(e.target.checked == true) {
+            caughtPokemon.Kanto[country[1].name] = country[1].type;
+            const docRef = addDoc(collection(db, "kanto"), {
+              name: country[1].name,
+              type: country[1].type
+              });
+            console.log(caughtPokemon);
+          }
+          if(e.target.checked == false) {
+            delete caughtPokemon.Kanto[country[1].name];
+            console.log(caughtPokemon);
+          }
+        }}/>
         {country[1].name}
         </li>
         ))}
         {Hoenn.filter(pokemon => {if(value == null) {return} else{return pokemon[1].name.includes(value)}}).map((country) => (
         <li style={{background:"var(--"+country[1].type+")", }} class="filler" onClick={() => changeGIF(country[1].name)} key={country.id}>
         <Image width='70'height='70'src={'https://img.pokemondb.net/sprites/x-y/normal/' + country[1].name + '.png'} alt='Bulbasaur'/>
-        <br /><br />
+        <Checkbox {...Hoenn} color="default" onChange={e => {
+          if(e.target.checked == true) {
+            caughtPokemon.Kanto[country[1].name] = country[1].type;
+            const docRef = addDoc(collection(db, "kanto"), {
+              name: country[1].name,
+              type: country[1].type
+              });
+            console.log(caughtPokemon);
+          }
+          if(e.target.checked == false) {
+            delete caughtPokemon.Kanto[country[1].name];
+            console.log(caughtPokemon);
+          }
+        }}/>
         {country[1].name}
         </li>
         ))}
         {Sinnoh.filter(pokemon => {if(value == null) {return} else{return pokemon[1].name.includes(value)}}).map((country) => (
         <li style={{background:"var(--"+country[1].type+")", }} class="filler" onClick={() => changeGIF(country[1].name)} key={country.id}>
         <Image width='70'height='70'src={'https://img.pokemondb.net/sprites/x-y/normal/' + country[1].name + '.png'} alt='Bulbasaur'/>
-        <br /><br />
+        <Checkbox {...Sinnoh} color="default" onChange={e => {
+          if(e.target.checked == true) {
+            caughtPokemon.Kanto[country[1].name] = country[1].type;
+            const docRef = addDoc(collection(db, "kanto"), {
+              name: country[1].name,
+              type: country[1].type
+              });
+            console.log(caughtPokemon);
+          }
+          if(e.target.checked == false) {
+            delete caughtPokemon.Kanto[country[1].name];
+            console.log(caughtPokemon);
+          }
+        }}/>
         {country[1].name}
         </li>
         ))}
         {Unova.filter(pokemon => {if(value == null) {return} else{return pokemon[1].name.includes(value)}}).map((country) => (
         <li style={{background:"var(--"+country[1].type+")", }} class="filler" onClick={() => changeGIF(country[1].name)} key={country.id}>
         <Image width='70'height='70'src={'https://img.pokemondb.net/sprites/x-y/normal/' + country[1].name + '.png'} alt='Bulbasaur'/>
-        <br /><br />
+        <Checkbox {...Unova} color="default" onChange={e => {
+          if(e.target.checked == true) {
+            caughtPokemon.Kanto[country[1].name] = country[1].type;
+            const docRef = addDoc(collection(db, "kanto"), {
+              name: country[1].name,
+              type: country[1].type
+              });
+            console.log(caughtPokemon);
+          }
+          if(e.target.checked == false) {
+            delete caughtPokemon.Kanto[country[1].name];
+            console.log(caughtPokemon);
+          }
+        }}/>
         {country[1].name}
         </li>
         ))}
         {Kalos.filter(pokemon => {if(value == null) {return} else{return pokemon[1].name.includes(value)}}).map((country) => (
         <li style={{background:"var(--"+country[1].type+")", }} class="filler" onClick={() => changeGIF(country[1].name)} key={country.id}>
         <Image width='70'height='70'src={'https://img.pokemondb.net/sprites/x-y/normal/' + country[1].name + '.png'} alt='Bulbasaur'/>
-        <br /><br />
+        <Checkbox {...Kalos} color="default" onChange={e => {
+          if(e.target.checked == true) {
+            caughtPokemon.Kanto[country[1].name] = country[1].type;
+            const docRef = addDoc(collection(db, "kanto"), {
+              name: country[1].name,
+              type: country[1].type
+              });
+            console.log(caughtPokemon);
+          }
+          if(e.target.checked == false) {
+            delete caughtPokemon.Kanto[country[1].name];
+            console.log(caughtPokemon);
+          }
+        }}/>
         {country[1].name}
         </li>
         ))}
         {Alola.filter(pokemon => {if(value == null) {return} else{return pokemon[1].name.includes(value)}}).map((country) => (
         <li style={{background:"var(--"+country[1].type+")", }} class="filler" onClick={() => changeGIF(country[1].name)} key={country.id}>
-        <Image width='70'height='70'src={'https://img.pokemondb.net/sprites/x-y/normal/' + country[1].name + '.png'} alt='Bulbasaur'/>
-        <br /><br />
+        <Image width='70'height='70'src={'https://img.pokemondb.net/sprites/sword-shield/icon/' + country[1].name + '.png'} alt='Bulbasaur'/>
+        <Checkbox {...Alola} color="default" onChange={e => {
+          if(e.target.checked == true) {
+            caughtPokemon.Kanto[country[1].name] = country[1].type;
+            const docRef = addDoc(collection(db, "kanto"), {
+              name: country[1].name,
+              type: country[1].type
+              });
+            console.log(caughtPokemon);
+          }
+          if(e.target.checked == false) {
+            delete caughtPokemon.Kanto[country[1].name];
+            console.log(caughtPokemon);
+          }
+        }}/>
         {country[1].name}
         </li>
         ))}
         {Galar.filter(pokemon => {if(value == null) {return} else{return pokemon[1].name.includes(value)}}).map((country) => (
         <li style={{background:"var(--"+country[1].type+")", }} class="filler" onClick={() => changeGIF(country[1].name)} key={country.id}>
-        <Image width='70'height='70'src={'https://img.pokemondb.net/sprites/x-y/normal/' + country[1].name + '.png'} alt='Bulbasaur'/>
-        <br /><br />
+        <Image width='70'height='70'src={'https://img.pokemondb.net/sprites/sword-shield/icon/' + country[1].name + '.png'} alt='Bulbasaur'/>
+        <Checkbox {...Galar} color="default" onChange={e => {
+          if(e.target.checked == true) {
+            caughtPokemon.Kanto[country[1].name] = country[1].type;
+            const docRef = addDoc(collection(db, "kanto"), {
+              name: country[1].name,
+              type: country[1].type
+              });
+            console.log(caughtPokemon);
+          }
+          if(e.target.checked == false) {
+            delete caughtPokemon.Kanto[country[1].name];
+            console.log(caughtPokemon);
+          }
+        }}/>
         {country[1].name}
         </li>
         ))}
