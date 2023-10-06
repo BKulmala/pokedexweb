@@ -7,7 +7,6 @@ import { Inter } from 'next/font/google'
 import pokemonBackground from './../../public/grid.png'
 import React, { useState, useEffect } from 'react';
 import TextField from "@mui/material/TextField"
-import Switch from "@mui/material/Switch"
 import FormGroup from "@mui/material/FormGroup"
 import { Checkbox, FormControlLabel } from '@mui/material'
 import { addDoc, collection, getFirestore, getDocs, doc, query, where } from "firebase/firestore"
